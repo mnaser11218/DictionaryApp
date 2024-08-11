@@ -69,9 +69,18 @@ function putDataInList(amount, data) {
 }
 function putDataForSynonyms(amount, data) {
     console.log("inside loop synonymns");
-    for (var i = 0; i <= 3; i++) {
-        console.log("inside loop intended");
-        // itemsForSyn[i].innerHTML = "hello23223";
-        // data.meanings[amount].synonyms[i];
+    for (var i = 0; i <= data.meanings[amount].synonyms.length; i++) {
+        if (data.meanings[amount].synonyms.length == 0) {
+            return;
+        }
+        if (i === 6) {
+            return;
+        }
+        if (i == 0) {
+            itemsForSyn[i].innerHTML = "<i>" + "Synonyms:" + "</i> " + "<br/>" + data.meanings[amount].synonyms[i];
+        }
+        else {
+            itemsForSyn[i].innerHTML = data.meanings[amount].synonyms[i];
+        }
     }
 }
