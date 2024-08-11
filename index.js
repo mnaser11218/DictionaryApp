@@ -8,6 +8,8 @@ var ul = document.getElementById("list-unstyled");
 var items = ul.getElementsByTagName("li");
 var ulForSyn = document.getElementById("synonyms");
 var itemsForSyn = ulForSyn.getElementsByTagName("li");
+var ulForAnt = document.getElementById("antonymns");
+var itemsForAnt = ulForAnt.getElementsByTagName("li");
 button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
@@ -36,6 +38,7 @@ function getUsers(text) {
         emptyOutList();
         putDataInList(0, firstArray);
         putDataForSynonyms(0, firstArray);
+        putDataForAntonyms(0, firstArray);
     })
         .catch(function (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -81,6 +84,24 @@ function putDataForSynonyms(amount, data) {
         }
         else {
             itemsForSyn[i].innerHTML = data.meanings[amount].synonyms[i];
+        }
+    }
+}
+function putDataForAntonyms(amount, data) {
+    console.log("inside antonyms function");
+    for (var i = 0; i <= putDataForAntonyms.length; i++) {
+        console.log("inside antonyms for loop");
+        if (data.meanings[amount].antonyms.length == 0) {
+            return;
+        }
+        if (i === 6) {
+            return;
+        }
+        if (i == 0) {
+            itemsForAnt[i].innerHTML = "<i>" + "Antonyms:" + "</i> " + "<br/>" + data.meanings[amount].antonyms[i];
+        }
+        else {
+            itemsForAnt[i].innerHTML = data.meanings[amount].antonyms[i];
         }
     }
 }
