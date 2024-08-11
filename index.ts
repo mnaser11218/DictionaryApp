@@ -7,6 +7,9 @@ const defineWord: HTMLHeadElement= document.getElementById("definition12") as HT
 const pTagPhonetic: HTMLParagraphElement = document.getElementById("lead") as HTMLParagraphElement;
 var ul = document.getElementById("list-unstyled");
 var items = ul.getElementsByTagName("li");
+var ulForSyn = document.getElementById("synonyms")
+var itemsForSyn = ulForSyn.getElementsByTagName("li");
+
 button.addEventListener("click", (event) => {
   console.log(form.value)
   event.preventDefault();
@@ -37,6 +40,7 @@ function getUsers(text: string){
     updateHtmlWithApiData(firstArray);
     emptyOutList();
     putDataInList(0, firstArray);
+    putDataForSynonyms(0, firstArray);
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
@@ -57,6 +61,9 @@ function emptyOutList(){
 
 function putDataInList(amount: number, data: any){
   for (var i = 0; i <= data.meanings[amount].definitions.length; i++) {
+    if(i ==6){
+      return;
+    }
    if(i ==0  &&  data.meanings[amount].partOfSpeech){
     items[i].innerHTML = " Part of Speech:  " + data.meanings[amount].partOfSpeech 
     + "<br/>" + "<b>" + (i +1) + "</b>"  + ": "  + data.meanings[amount].definitions[i].definition;
@@ -67,5 +74,14 @@ function putDataInList(amount: number, data: any){
     }
   }
 
+  }
+}
+
+function putDataForSynonyms(amount, data){
+  console.log("inside loop synonymns")
+  for(var i =0; i <= 3; i++){
+    console.log("inside loop intended")
+   // itemsForSyn[i].innerHTML = "hello23223";
+   // data.meanings[amount].synonyms[i];
   }
 }

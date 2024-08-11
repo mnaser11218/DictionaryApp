@@ -6,6 +6,8 @@ var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
 var items = ul.getElementsByTagName("li");
+var ulForSyn = document.getElementById("synonyms");
+var itemsForSyn = ulForSyn.getElementsByTagName("li");
 button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
@@ -33,31 +35,26 @@ function getUsers(text) {
         updateHtmlWithApiData(firstArray);
         emptyOutList();
         putDataInList(0, firstArray);
+        putDataForSynonyms(0, firstArray);
     })
         .catch(function (error) {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
 function updateHtmlWithApiData(data) {
-    //var ul: any = document.getElementById("list-unstyled");
     defineWord.innerHTML = "Word: " + data.word;
     pTagPhonetic.innerHTML = "phonetics : " + "<b>" + data.phonetic + "</b>";
-    //var items: any = ul.getElementsByTagName("li");
 }
 function emptyOutList() {
-    // var ul = document.getElementById("list-unstyled");
-    //  var items = ul.getElementsByTagName("li");
     for (var i = 0; i < items.length; i++) {
-        // do something with items[i], which is a <li> element
         items[i].innerHTML = "";
     }
 }
 function putDataInList(amount, data) {
-    //var ul = document.getElementById("list-unstyled");
-    // var items = ul.getElementsByTagName("li");
     for (var i = 0; i <= data.meanings[amount].definitions.length; i++) {
-        // do something with items[i], which is a <li> element
-        // data.meanings.definitions.partOfSpeech +  ": "+
+        if (i == 6) {
+            return;
+        }
         if (i == 0 && data.meanings[amount].partOfSpeech) {
             items[i].innerHTML = " Part of Speech:  " + data.meanings[amount].partOfSpeech
                 + "<br/>" + "<b>" + (i + 1) + "</b>" + ": " + data.meanings[amount].definitions[i].definition;
@@ -68,5 +65,13 @@ function putDataInList(amount, data) {
                 items[i].innerHTML += "<br/>" + " <b>Example</b>: " + "<i>" + data.meanings[amount].definitions[i].example + "</i>";
             }
         }
+    }
+}
+function putDataForSynonyms(amount, data) {
+    console.log("inside loop synonymns");
+    for (var i = 0; i <= 3; i++) {
+        console.log("inside loop intended");
+        // itemsForSyn[i].innerHTML = "hello23223";
+        // data.meanings[amount].synonyms[i];
     }
 }
