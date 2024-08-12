@@ -11,12 +11,11 @@ var ulForSyn = document.getElementById("synonyms")
 var itemsForSyn = ulForSyn.getElementsByTagName("li");
 var ulForAnt = document.getElementById("antonymns")
 var itemsForAnt = ulForAnt.getElementsByTagName("li")
-
+type GenericObject = Record<string, any>;
 button.addEventListener("click", (event) => {
   console.log(form.value)
   event.preventDefault();
    // Prevent default form submission
-   console.log("inside event listener")
   form.style.borderColor = "yellow";
 
  //const banner: any = document.getElementsByClassName("navbar navbar-expand-md navbar-dark bg-dark mb-4")
@@ -25,7 +24,7 @@ button.addEventListener("click", (event) => {
  getUsers(form.value);
 });
 
-function getUsers(text: string){
+function getUsers(text: string): void{
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
   .then(response => {
     if (!response.ok) {
@@ -44,25 +43,29 @@ function getUsers(text: string){
     putDataInList(0, firstArray);
     putDataForSynonyms(0, firstArray);
     putDataForAntonyms(0, firstArray)
+    //putDataInList(0, firstArray);
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
   });
 }
 
-function updateHtmlWithApiData(data: any){
+function updateHtmlWithApiData(data: GenericObject): void{
   defineWord.innerHTML= "Word: " + data.word;
   pTagPhonetic.innerHTML = "phonetics : " + "<b>" + data.phonetic + "</b>";
 }
 
-function emptyOutList(){
+function emptyOutList(): void{
   for (var i = 0; i < items.length; i++) {
     items[i].innerHTML= "";
+    itemsForAnt[i].innerHTML = "";
+    itemsForSyn[i].innerHTML = "";
   }
+
 
 }
 
-function putDataInList(amount: number, data: any){
+function putDataInList(amount: number, data: GenericObject) : void{
   for (var i = 0; i <= data.meanings[amount].definitions.length; i++) {
     if(i ==6){
       return;
@@ -80,8 +83,7 @@ function putDataInList(amount: number, data: any){
   }
 }
 
-function putDataForSynonyms(amount, data){
-  console.log("inside loop synonymns")
+function putDataForSynonyms(amount: number, data: GenericObject): void{
   for(var i =0; i <= data.meanings[amount].synonyms.length; i++){
     if(data.meanings[amount].synonyms.length == 0){
       return;
@@ -97,10 +99,8 @@ function putDataForSynonyms(amount, data){
   }
 }
 
-function putDataForAntonyms(amount: number, data: any){
-  console.log("inside antonyms function")
-for(var i =0; i <= putDataForAntonyms.length; i++){
-  console.log("inside antonyms for loop")
+function putDataForAntonyms(amount: number, data: GenericObject): void{
+for(var i =0; i < putDataForAntonyms.length; i++){
   if(data.meanings[amount].antonyms.length == 0){
     return;
   }

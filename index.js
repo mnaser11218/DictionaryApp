@@ -14,7 +14,6 @@ button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
     // Prevent default form submission
-    console.log("inside event listener");
     form.style.borderColor = "yellow";
     //const banner: any = document.getElementsByClassName("navbar navbar-expand-md navbar-dark bg-dark mb-4")
     //banner.style.background = "red";
@@ -39,6 +38,7 @@ function getUsers(text) {
         putDataInList(0, firstArray);
         putDataForSynonyms(0, firstArray);
         putDataForAntonyms(0, firstArray);
+        //putDataInList(0, firstArray);
     })
         .catch(function (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -51,6 +51,8 @@ function updateHtmlWithApiData(data) {
 function emptyOutList() {
     for (var i = 0; i < items.length; i++) {
         items[i].innerHTML = "";
+        itemsForAnt[i].innerHTML = "";
+        itemsForSyn[i].innerHTML = "";
     }
 }
 function putDataInList(amount, data) {
@@ -71,7 +73,6 @@ function putDataInList(amount, data) {
     }
 }
 function putDataForSynonyms(amount, data) {
-    console.log("inside loop synonymns");
     for (var i = 0; i <= data.meanings[amount].synonyms.length; i++) {
         if (data.meanings[amount].synonyms.length == 0) {
             return;
@@ -88,9 +89,7 @@ function putDataForSynonyms(amount, data) {
     }
 }
 function putDataForAntonyms(amount, data) {
-    console.log("inside antonyms function");
-    for (var i = 0; i <= putDataForAntonyms.length; i++) {
-        console.log("inside antonyms for loop");
+    for (var i = 0; i < putDataForAntonyms.length; i++) {
         if (data.meanings[amount].antonyms.length == 0) {
             return;
         }
