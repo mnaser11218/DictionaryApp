@@ -13,10 +13,7 @@ var itemsForAnt = ulForAnt.getElementsByTagName("li");
 button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
-    // Prevent default form submission
     form.style.borderColor = "yellow";
-    //const banner: any = document.getElementsByClassName("navbar navbar-expand-md navbar-dark bg-dark mb-4")
-    //banner.style.background = "red";
     getUsers(form.value);
 });
 function getUsers(text) {
@@ -25,20 +22,14 @@ function getUsers(text) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json(); // Assuming the response is JSON
+        return response.json();
     })
         .then(function (data) {
-        console.log("updated data");
         var firstArray = data[0];
         Object.keys(firstArray).forEach(function (key) {
             console.log(key + ": " + firstArray[key]);
         });
-        updateHtmlWithApiData(firstArray);
-        emptyOutList();
-        putDataInList(0, firstArray);
-        putDataForSynonyms(0, firstArray);
-        putDataForAntonyms(0, firstArray);
-        //putDataInList(0, firstArray);
+        runFunctionToUpdateData(firstArray);
     })
         .catch(function (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -50,16 +41,20 @@ function updateHtmlWithApiData(data) {
 }
 function emptyOutList() {
     for (var i = 0; i < items.length; i++) {
+        items[i].classList.remove("list-group-item");
+        itemsForAnt[i].classList.remove("list-group-item");
+        itemsForSyn[i].classList.remove("list-group-item");
         items[i].innerHTML = "";
         itemsForAnt[i].innerHTML = "";
         itemsForSyn[i].innerHTML = "";
     }
 }
 function putDataInList(amount, data) {
-    for (var i = 0; i <= data.meanings[amount].definitions.length; i++) {
+    for (var i = 0; i < data.meanings[amount].definitions.length; i++) {
         if (i == 6) {
             return;
         }
+        items[i].classList.add("list-group-item");
         if (i == 0 && data.meanings[amount].partOfSpeech) {
             items[i].innerHTML = " Part of Speech:  " + data.meanings[amount].partOfSpeech
                 + "<br/>" + "<b>" + (i + 1) + "</b>" + ": " + data.meanings[amount].definitions[i].definition;
@@ -73,18 +68,19 @@ function putDataInList(amount, data) {
     }
 }
 function putDataForSynonyms(amount, data) {
-    for (var i = 0; i <= data.meanings[amount].synonyms.length; i++) {
+    for (var i = 0; i < data.meanings[amount].synonyms.length; i++) {
         if (data.meanings[amount].synonyms.length == 0) {
             return;
         }
         if (i === 6) {
             return;
         }
+        itemsForSyn[i].classList.add("list-group-item");
         if (i == 0) {
-            itemsForSyn[i].innerHTML = "<i>" + "Synonyms:" + "</i> " + "<br/>" + data.meanings[amount].synonyms[i];
+            itemsForSyn[i].innerHTML = "<i>" + "Synonyms:" + "</i> " + "<br/>" + "<i>" + data.meanings[amount].synonyms[i] + "</i>";
         }
         else {
-            itemsForSyn[i].innerHTML = data.meanings[amount].synonyms[i];
+            itemsForSyn[i].innerHTML = "<i>" + data.meanings[amount].synonyms[i] + "</i>";
         }
     }
 }
@@ -96,11 +92,19 @@ function putDataForAntonyms(amount, data) {
         if (i === 6) {
             return;
         }
+        itemsForAnt[i].classList.add("list-group-item");
         if (i == 0) {
-            itemsForAnt[i].innerHTML = "<i>" + "Antonyms:" + "</i> " + "<br/>" + data.meanings[amount].antonyms[i];
+            itemsForAnt[i].innerHTML = "<i>" + "Antonyms:" + "</i> " + "<br/>" + "<i>" + data.meanings[amount].antonyms[i] + "<i/>";
         }
         else {
-            itemsForAnt[i].innerHTML = data.meanings[amount].antonyms[i];
+            itemsForAnt[i].innerHTML = "<i>" + data.meanings[amount].antonyms[i] + "<i/>";
         }
     }
+}
+function runFunctionToUpdateData(firstArray) {
+    updateHtmlWithApiData(firstArray);
+    emptyOutList();
+    putDataInList(0, firstArray);
+    putDataForSynonyms(0, firstArray);
+    putDataForAntonyms(0, firstArray);
 }
