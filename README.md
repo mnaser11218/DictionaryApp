@@ -6,21 +6,23 @@ Welcome to your **TypeScript Dictionary**, a "web-based" Dictionary app built wi
 
 The app fetches word definitions from the dictionary API: [https://dictionaryapi.dev](https://dictionaryapi.dev)
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **TypeScript**
 - **JavaScript**
 - **HTML** & **CSS**
 - **Bootstrap** for styling
 
-### Screenshots
+---
+
+## 📸 Screenshots
 
 ![Screenshot 1](https://github.com/user-attachments/assets/11914f80-33b5-436d-91a1-135556b29bca)
 ![Screenshot 2](https://github.com/user-attachments/assets/1f7421e4-2e30-4af6-9d04-d82d53208e4b)
 
 ---
 
-## Features
+## 🚀 Features
 
 - **Word Definition**: Get clear and concise definitions from trusted sources.
 - **Phonetics**: Learn the correct pronunciation with easy-to-read phonetic symbols and audio guides.
@@ -31,7 +33,7 @@ Whether you're a student, professional, or language enthusiast, this app is desi
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions to this project! If you'd like to help out:
 
@@ -44,8 +46,7 @@ Please ensure that your code follows the style guidelines and passes any existin
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
 
