@@ -1,22 +1,52 @@
-# WhatsTypescript
-what is typescript?
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Icon_dictionary.svg" alt="Logo of the project" align="right" width="50">
 
-there is this language, [Typescript](https://www.typescriptlang.org).
-Microsoft maintains it, it's become a very intersting contender for the best new front end language.
-It's different in that it is is _strongly-typed_ but at it's code it is bascially Javascript.
+# Dictionary_App &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 
-You job is learn enough about Typescript to build a pretty simple app.
+Welcome to your **TypeScript Dictionary**, a "web-based" Dictionary app built with **TypeScript**. This app provides a user-friendly interface where you can type in an English word and get its **definition**, **phonetics**, **synonyms**, **antonyms**, and **sentence examples**.
 
-Build a "web based" Dictionary app. 
-The app has a single page, like a very simple google interface, where the user types in an english word and gets a defintion of the word.
+The app fetches word definitions from the dictionary API: [https://dictionaryapi.dev](https://dictionaryapi.dev)
 
-For the source of your definitions, use this API: 
-`https://dictionaryapi.dev`
+## 🛠️ Tech Stack
 
-For your page styling I have used: `https://getbootstrap.com` 
-There is a simple [html page sample](index.html) to get you started.
-It's an example of using bootstrap for styling a page without a lot of effort.
+- **TypeScript**
+- **JavaScript**
+- **HTML** & **CSS**
+- **Bootstrap** for styling
 
-Write a program in Typescript to handle the action of calling the dictionary api from the page, and displaying the result, in a nice fashion.
+---
 
-Demos on Monday!
+## 📸 Screenshots
+
+![Screenshot 1](https://github.com/user-attachments/assets/11914f80-33b5-436d-91a1-135556b29bca)
+![Screenshot 2](https://github.com/user-attachments/assets/1f7421e4-2e30-4af6-9d04-d82d53208e4b)
+
+---
+
+## 🚀 Features
+
+- **Word Definition**: Get clear and concise definitions from trusted sources.
+- **Phonetics**: Learn the correct pronunciation with easy-to-read phonetic symbols and audio guides.
+- **Synonyms**: Discover alternative words to enrich your vocabulary and avoid repetition.
+- **Antonyms**: Understand the opposite meanings to expand your comprehension and usage of the language.
+
+Whether you're a student, professional, or language enthusiast, this app is designed to be a comprehensive resource for mastering words and boosting your language skills.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to this project! If you'd like to help out:
+
+1. **Fork** the repository.
+2. **Create a new branch** for your feature or bugfix.
+3. **Make your changes** and commit them.
+4. **Push your branch** and create a pull request.
+
+Please ensure that your code follows the style guidelines and passes any existing tests.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
