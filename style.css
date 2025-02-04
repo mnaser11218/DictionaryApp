@@ -1,0 +1,32 @@
+/* General Button Styles */
+.custom-btn {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Outline button styling */
+.custom-btn.btn-outline-success {
+    border: 2px solid #28a745;
+    color: #28a745;
+    background-color: transparent;
+}
+
+.custom-btn.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+}
+
+.custom-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.navbar-brand{
+    border: red solid 1px important!;
+    height: 100px;
+}
