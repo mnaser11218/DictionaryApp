@@ -118,14 +118,14 @@ label {
   </head>
   <body>
     <script>
-     window.MY_GLOBAL_VAR = "testing 123"
+    //  window.MY_GLOBAL_VAR = "testing 123"
     async function fetchApiKey() {
       try {
         const response = await fetch('/api/get-api-key');
         const data = await response.json();
 
         // Set the API key as a global variable
-        window.MY_GLOBAL_VAR = data.apiKey;
+       return data.apiKey;
         console.log('API Key:', window.MY_GLOBAL_VAR); // Test to make sure it works
       } catch (error) {
         console.error('Error fetching API key:', error);
@@ -133,7 +133,7 @@ label {
     }
 
     // Call the function to fetch the API key
-    // fetchApiKey();
+    window.MY_GLOBAL_VAR = fetchApiKey();
     </script>
     
     
