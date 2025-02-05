@@ -140,20 +140,21 @@ label {
   try {
     const response = await fetch('/api/get-api-key');
     const data = await response.json();
-    return data.apiKey; // Return the apiKey
+    console.log("the key is: " , data.apiKey)
+    window.MY_GLOBAL_VAR = data.apiKey; // Return the apiKey
   } catch (error) {
     console.error('Error fetching API key:', error);
   }
 }
 
-async function getApiKey() {
-  const apiKey = await fetchApiKey(); // Use await to get the resolved apiKey
-  console.log(
-    "final key: ", apiKey);
-  return apiKey; // Logs the API key
-}
+// async function getApiKey() {
+//   const apiKey = await fetchApiKey(); // Use await to get the resolved apiKey
+//   console.log(
+//     "final key: ", apiKey);
+//   return apiKey; // Logs the API key
+// }
 
-window.MY_GLOBAL_VAR = getApiKey();
+// window.MY_GLOBAL_VAR = getApiKey();
 
     // Call the function to fetch the API key
     
