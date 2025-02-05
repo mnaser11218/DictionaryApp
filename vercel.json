@@ -5,7 +5,7 @@
         "use": "@vercel/static-build",
         "config": {
           "replace": {
-            "MY_GLOBAL_VAR": "@MY_GLOBAL_VAR"
+            "__MY_GLOBAL_VAR__": "@MY_GLOBAL_VAR"
           }
         }
       }
