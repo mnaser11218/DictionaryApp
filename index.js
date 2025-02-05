@@ -1,15 +1,10 @@
-// Import stylesheets
-//import './style.css';
-// import axios from 'axios';
-
-
-
 var form = document.getElementById("form-control6");
 var gradeLevelform = document.getElementById("grade-level-input");
 var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
 var AIbutton = document.getElementById("ai-button");
-var apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+var apiKey = window.MY_GLOBAL_VAR;
+{console.log(apiKey)}
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
@@ -19,7 +14,7 @@ var itemsForSyn = ulForSyn.getElementsByTagName("li");
 var ulForAnt = document.getElementById("antonymns");
 var itemsForAnt = ulForAnt.getElementsByTagName("li");
 
-button.addEventListener("click", function (event) {
+    button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
 
@@ -29,13 +24,12 @@ button.addEventListener("click", function (event) {
         fetchOpenAiContext(contextform.value, gradeLevelform.value, form.value)
     }
     
-});
+    });
 
-
-    AIbutton.addEventListener("click", (event) => {
-     event.preventDefault();
-     fetchOpenAiSpelling(form.value)
-     });
+    AIbutton.addEventListener("click", (event) => { 
+    event.preventDefault();
+    fetchOpenAiSpelling(form.value)
+    });
 
 
 
@@ -77,19 +71,19 @@ button.addEventListener("click", function (event) {
                 });
         }
     }
-function getDef(text) {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/".concat(text))
-        .then(function (response) {
-        if (!response.ok) {
+            function getDef(text) {
+            fetch("https://api.dictionaryapi.dev/api/v2/entries/en/".concat(text))
+            .then(function (response) {
+            if (!response.ok) {
             throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-        .then(function (data) {
-        var firstArray = data[0];
-        Object.keys(firstArray).forEach(function (key) {
+            }
+            return response.json();
+            })
+            .then(function (data) {
+            var firstArray = data[0];
+            Object.keys(firstArray).forEach(function (key) {
             console.log(key + " : " + firstArray[key]);
-        });
+            });
 
         console.log("data from api: " + firstArray)
         runFunctionToUpdateData(firstArray);
