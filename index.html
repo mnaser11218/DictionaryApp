@@ -153,15 +153,20 @@ async function fetchApiKey() {
     const data = await response.json();
     console.log("The key is:", data.apiKey);
 
-    // Store the API key in localStorage
-    localStorage.setItem('MY_GLOBAL_VAR', data.apiKey);
+    // Set the global variable only after fetching the data
+    window.MY_GLOBAL_VAR = data.apiKey;
   } catch (error) {
     console.error('Error fetching API key:', error);
   }
 }
 
-// Call the function to fetch the API key
-fetchApiKey();
+// Call the function and wait for it to complete
+fetchApiKey().then(() => {
+  // Now you can safely access the global variable
+  console.log("The global variable is:", window.MY_GLOBAL_VAR);
+});
+
+
 
 
 // async function getApiKey() {
