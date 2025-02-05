@@ -125,8 +125,9 @@ label {
         const data = await response.json();
 
         // Set the API key as a global variable
-        console.log('API Key:', data.apiKey); 
-       return data.apiKey;
+      
+        window.MY_GLOBAL_VAR = data.apiKey;
+        console.log('API Key:::', window.MY_GLOBAL_VAR); 
         // Test to make sure it works
       } catch (error) {
         console.error('Error fetching API key:', error);
@@ -134,7 +135,8 @@ label {
     }
 
     // Call the function to fetch the API key
-    window.MY_GLOBAL_VAR = fetchApiKey();
+    
+   
     </script>
     
     
