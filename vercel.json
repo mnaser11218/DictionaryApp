@@ -1,13 +1,18 @@
 {
     "builds": [
       {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "replace": {
-            "MY_GLOBAL_VAR": "@MY_GLOBAL_VAR"
-          }
-        }
+        "src": "public/**/*",
+        "use": "@vercel/static-build"
       }
-    ]
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+      }
+    ],
+    "env": {
+      "MY_GLOBAL_VAR": "@MY_GLOBAL_VAR"
+    }
   }
+  
