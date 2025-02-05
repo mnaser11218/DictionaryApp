@@ -3,6 +3,8 @@
 
 const form: HTMLFormElement= document.getElementById("form-control6") as HTMLFormElement;
 const button : HTMLButtonElement = document.getElementById("button-submit") as HTMLButtonElement;
+const AIbutton : HTMLButtonElement = document.getElementById("ai-button") as HTMLButtonElement;
+
 const defineWord: HTMLHeadElement= document.getElementById("definition12") as HTMLHeadElement;
 const pTagPhonetic: HTMLParagraphElement = document.getElementById("lead") as HTMLParagraphElement;
 var ul = document.getElementById("list-unstyled") as HTMLUListElement;
@@ -18,10 +20,18 @@ button.addEventListener("click", (event) => {
   console.log(form.value)
   event.preventDefault();
   form.style.borderColor = "yellow";  
- getUsers(form.value);
+ getDef(form.value);
 });
 
-function getUsers(text: string): void{
+AIbutton.addEventListener("click", (event) => {
+//   console.log(form.value)
+  event.preventDefault();
+//   form.style.borderColor = "yellow";  
+//  getDef(form.value);
+console.log("spelling button clicked")
+});
+
+function getDef(text: string): void{
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
   .then(response => {
     if (!response.ok) {

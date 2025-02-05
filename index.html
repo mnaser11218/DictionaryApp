@@ -71,6 +71,45 @@ ul {
           font-size: 3.5rem;
         }
       }
+
+
+      .containerInput {
+  /* background-color: #fff; */
+  margin-bottom: 5px;
+  color:white;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-size: 16px;
+  /* margin-bottom: 8px; */
+  display: block;
+}
+
+.styled-select {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.styled-select:hover {
+  border-color: #4CAF50;
+}
+
+.styled-select:focus {
+  border-color: #45a049;
+}
+
+/* option {
+  padding: 10px;
+} */
     </style>
 
     
@@ -94,12 +133,41 @@ ul {
           <a class="nav-link" href="https://dictionaryapi.dev">Our API</a>
         </li>
       </ul>
-      <form class="d-flex" id="defineform">
-        <input id="form-control6" class="form-control me-2" type="search" name="defineword" placeholder="What word?" aria-label="Search">
-        <button class="btn btn-outline-success" id="button-submit" type="submit">Define</button>
-        <!-- <button class="btn btn-outline-success custom-btn" id="button-submit" type="submit">Define</button> -->
+      <p style="color: white;margin-right: 20px; margin-bottom: 5px"><bold>AI Features: </bold></p>
+  
 
+      <div class="containerInput">
+        <!-- <label for="options">Definition context:</label> -->
+        <select id="context-def-input"  placeholder="testing" name="options" class="styled-select">
+          <option value="" disabled selected>Choose Definition Context...</option> 
+
+          <option value="Science">Science</option>
+          <option value="Math">Math</option>
+          <option value="Language">Language</option>
+          <option value="Engineering">Engineering</option>
+          <option value="History">History</option>
+          <option value="Software development">Software Development</option>
+          <option value="Sports">Sports</option>
+        </select>
+      </div>
+
+      <div class="containerInput">
+        <!-- <label for="options">Grade Level:</label> -->
+        <select id="grade-level-input" name="options" class="styled-select">
+          <option value="" disabled selected>Choose Grade Level...</option> 
+          <option value="Elementary school">Elementary</option>
+          <option value="Middle school">Middle School</option>
+          <option value="highschool">Highschool</option>
+          <option value="College">College</option>
+        </select>
+      </div>
+   
+      <form  class="d-flex" id="defineform">
+        <input  id="form-control6" class="form-control me-2" type="search" name="defineword" placeholder="Word to define" aria-label="Search">   
+        <button style="margin-right: 5px;"
+        class="btn btn-outline-success" type="submit" id="ai-button">Spellcheck</button>
       </form>
+      <button class="btn btn-outline-success" id="button-submit" type="submit">Define</button>
     </div>
   </div>
 </nav>

@@ -1,7 +1,14 @@
 // Import stylesheets
 //import './style.css';
+// import axios from 'axios';
+
 var form = document.getElementById("form-control6");
+var gradeLevelform = document.getElementById("grade-level-input");
+var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
+var AIbutton = document.getElementById("ai-button");
+var apiKey = process.env.REACT_APP_OPENAI_API_KEY
+// var apiKey = "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"
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
@@ -10,13 +17,66 @@ var ulForSyn = document.getElementById("synonyms");
 var itemsForSyn = ulForSyn.getElementsByTagName("li");
 var ulForAnt = document.getElementById("antonymns");
 var itemsForAnt = ulForAnt.getElementsByTagName("li");
+
 button.addEventListener("click", function (event) {
     console.log(form.value);
     event.preventDefault();
-    form.style.borderColor = "yellow";
-    getUsers(form.value);
+
+    if(!contextform.value && !gradeLevelform.value){
+        getDef(form.value);
+    }else{
+        fetchOpenAiContext(contextform.value, gradeLevelform.value, form.value)
+    }
+    
 });
-function getUsers(text) {
+
+
+    AIbutton.addEventListener("click", (event) => {
+     event.preventDefault();
+     fetchOpenAiSpelling(form.value)
+     });
+
+
+
+    function fetchOpenAiSpelling(word) {
+        if (!word) {
+            alert("Word cannot be empty for an AI response.");
+        } else {
+            const apiUrl = 'https://api.openai.com/v1/chat/completions';
+            const requestPayload = {
+                model: "gpt-3.5-turbo",
+                messages: [
+                    {
+                        role: "user",
+                        content: `Fix the spelling of this word, return only the updated word: ${word}`
+                    }
+                ],
+                max_tokens: 1000
+            };
+    
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestPayload)
+            };
+    
+            fetch(apiUrl, requestOptions)
+                .then(response => response.json())  // Parse the JSON response
+                .then(data => {
+                    console.log(data.choices[0].message.content);  // Log the response
+                    const gptResponse = data.choices[0].message.content;
+                    console.log("gpt response is: " + gptResponse)
+                    form.value = gptResponse;  // Update the form with the AI response
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+function getDef(text) {
     fetch("https://api.dictionaryapi.dev/api/v2/entries/en/".concat(text))
         .then(function (response) {
         if (!response.ok) {
@@ -27,14 +87,117 @@ function getUsers(text) {
         .then(function (data) {
         var firstArray = data[0];
         Object.keys(firstArray).forEach(function (key) {
-            console.log(key + ": " + firstArray[key]);
+            console.log(key + " : " + firstArray[key]);
         });
+
+        console.log("data from api: " + firstArray)
         runFunctionToUpdateData(firstArray);
     })
         .catch(function (error) {
         console.error('There was a problem with the fetch operation:', error);
     });
 }
+
+function fetchOpenAiContext(contextWord, gradeLevel, word){
+    if (!contextWord) {
+        alert("Word cannot be empty for an AI response.");
+    } else {
+        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+        const requestPayload = {
+            model: "gpt-3.5-turbo",
+            messages: [
+                {
+                    role: "user",
+                    content: `provide MULTIPLE definitions of this word: ${word}, and give examples of the word in the context of: ${contextWord}, for someone who's grade level is: ${gradeLevel}. Return it in an object similar to this: {
+    "word": "${word}",
+    "phonetic": "/kɑː/",
+    "phonetics": [
+      {
+        "text": "/kɑː/",
+        "audio": "",
+        "sourceUrl": "",
+        "license": {
+          "name": "",
+          "url": ""
+        }
+      },
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "provide a definition of this word ${form.value} in context: ${contextWord} for someone who's grade level is:${gradeLevel} ",
+            "synonyms": [
+           "provide multiple synonyms of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+            ],
+            "antonyms": [],
+            "example": " provide a sentence example of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+          },
+          {
+             "definition": "provide another definition of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+            "synonyms": [
+           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+            ],
+            "antonyms": [],
+            "example": " provide a sentence example of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+          },
+
+            {
+             "definition": "provide another definition of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+            "synonyms": [
+           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+            ],
+            "antonyms": [],
+            "example": " provide a sentence example of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+          }
+        ],
+        "synonyms": [
+        " provide MULTIPLE synonyms of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+       
+        ],
+        "antonyms": [" provide MULTIPLE antonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} "]
+      }
+    ],
+    "license": {
+      "name": "CC BY-SA 3.0",
+      "url": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    "sourceUrls": [
+      "https://en.wiktionary.org/wiki/car"
+    ]
+  }`
+                }
+            ],
+            max_tokens: 1000
+        };
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestPayload)
+        };
+
+        fetch(apiUrl, requestOptions)
+            .then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                console.log(data.choices[0].message.content);  // Log the response
+                const gptResponse = data.choices[0].message.content;
+                const gptResponse1 = JSON.parse(gptResponse)
+                runFunctionToUpdateData(gptResponse1);
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+}
+
+
+
 function updateHtmlWithApiData(data) {
     defineWord.innerHTML = "Word: " + data.word;
     pTagPhonetic.innerHTML = "phonetics : " + "<b>" + data.phonetic + "</b>";
