@@ -126,13 +126,16 @@ label {
 
         // Set the API key as a global variable
       
-        window.MY_GLOBAL_VAR = data.apiKey;
-        console.log('API Key:::', window.MY_GLOBAL_VAR); 
+       
+        // console.log('API Key:::', window.MY_GLOBAL_VAR); 
+        return data.apiKey;
         // Test to make sure it works
       } catch (error) {
         console.error('Error fetching API key:', error);
       }
     }
+   const api = fetchApiKey();
+   console.log(api)
 
     // Call the function to fetch the API key
     
