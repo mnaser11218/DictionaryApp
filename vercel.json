@@ -1,11 +1,11 @@
 {
     "builds": [
       {
-        "src": "index.html",
+        "src": "package.json",
         "use": "@vercel/static-build",
         "config": {
           "replace": {
-            "__MY_GLOBAL_VAR__": "@MY_GLOBAL_VAR"
+            "MY_GLOBAL_VAR": "@MY_GLOBAL_VAR"
           }
         }
       }
