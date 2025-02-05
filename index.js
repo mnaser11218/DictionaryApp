@@ -7,8 +7,8 @@ var gradeLevelform = document.getElementById("grade-level-input");
 var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
 var AIbutton = document.getElementById("ai-button");
-// var apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-var apiKey = "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"
+var apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
