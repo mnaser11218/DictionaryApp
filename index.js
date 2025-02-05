@@ -7,8 +7,8 @@ var gradeLevelform = document.getElementById("grade-level-input");
 var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
 var AIbutton = document.getElementById("ai-button");
-var apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-
+// var apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+var apiKey=REACT_APP_OPENAI_API_KEY;
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
