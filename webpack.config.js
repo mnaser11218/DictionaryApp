@@ -1,28 +1,22 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',  // Your entry point
+  entry: './src/index.js',  // Your entry JavaScript file
   output: {
-    filename: 'bundle.js',  // Output file name
-    path: path.resolve(__dirname, 'dist'),  // Output directory
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
-  resolve: {
-    extensions: ['.js', '.json'],  // Resolve file extensions
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,  // Transpile JavaScript files (if needed)
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-    ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
   },
   plugins: [
-    new Dotenv(),  // Use dotenv-webpack to load the .env variables
+    new Dotenv(),  // This will load environment variables from a .env file
+    new HtmlWebpackPlugin({
+      template: './src/index.html',  // Your HTML template
+    }),
   ],
-  node: {
-    process: true,  // Ensure `process` is available in the browser
-  },
 };
