@@ -4,7 +4,6 @@ var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
 var AIbutton = document.getElementById("ai-button");
 var apiKey = window.MY_GLOBAL_VAR;
-{console.log(apiKey)}
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
 var ul = document.getElementById("list-unstyled");
