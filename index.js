@@ -103,7 +103,7 @@ function fetchOpenAiContext(contextWord, gradeLevel, word){
             messages: [
                 {
                     role: "user",
-                    content: `provide MULTIPLE definitions of this word: ${word}, and give examples of the word in the context of: ${contextWord}, for someone who's grade level is: ${gradeLevel}. Return it in an object similar to this: {
+                    content: `provide MULTIPLE definitions of this word: ${word}, and give examples of the word in the context of: ${contextWord}, use examples for someone who's grade level is: ${gradeLevel}. Return it in an object similar to this: {
     "word": "${word}",
     "phonetic": "/kɑː/",
     "phonetics": [
@@ -122,36 +122,36 @@ function fetchOpenAiContext(contextWord, gradeLevel, word){
         "partOfSpeech": "noun",
         "definitions": [
           {
-            "definition": "provide a definition of this word ${form.value} in context: ${contextWord} for someone who's grade level is:${gradeLevel} ",
+            "definition": "provide a definition of this word ${form.value} in context: ${contextWord} ",
             "synonyms": [
-           "provide multiple synonyms of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+           "provide multiple synonyms of this word ${form.value} in context: ${contextWord} ",
             ],
             "antonyms": [],
             "example": " provide a sentence example of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} "
           },
           {
-             "definition": "provide another definition of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+             "definition": "provide another definition of this word ${form.value} in the context of: ${contextWord}",
             "synonyms": [
-           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord} ",
             ],
             "antonyms": [],
-            "example": " provide a sentence example of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+            "example": " provide a sentence example of this word ${form.value} in context: ${contextWord} "
           },
 
             {
              "definition": "provide another definition of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
             "synonyms": [
-           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} ",
+           "provide multiple synonyms of this word ${form.value} in the context of: ${contextWord} ",
             ],
             "antonyms": [],
             "example": " provide a sentence example of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
           }
         ],
         "synonyms": [
-        " provide MULTIPLE synonyms of this word ${form.value} in context: ${contextWord}, for someone who's grade level is:${gradeLevel} "
+        " provide MULTIPLE synonyms of this word ${form.value} in context: ${contextWord} "
        
         ],
-        "antonyms": [" provide MULTIPLE antonyms of this word ${form.value} in the context of: ${contextWord}, for someone who's grade level is:${gradeLevel} "]
+        "antonyms": [" provide MULTIPLE antonyms of this word ${form.value} in the context of: ${contextWord}"]
       }
     ],
     "license": {
