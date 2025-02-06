@@ -3,7 +3,16 @@ var gradeLevelform = document.getElementById("grade-level-input");
 var contextform = document.getElementById("context-def-input");
 var button = document.getElementById("button-submit");
 var AIbutton = document.getElementById("ai-button");
-var apiKey = localStorage.getItem('MY_GLOBAL_VAR');
+// var apiKey = localStorage.getItem('MY_GLOBAL_VAR');
+var apiKey = function getApiKeyFromCookies() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      if (cookie.trim().startsWith('MY_GLOBAL_VAR=')) {
+        return cookie.trim().substring('MY_GLOBAL_VAR='.length);
+      }
+    }
+    return null;
+  }
 // const apiKey = localStorage.getItem('MY_GLOBAL_VAR');
 var defineWord = document.getElementById("definition12");
 var pTagPhonetic = document.getElementById("lead");
