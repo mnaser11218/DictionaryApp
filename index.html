@@ -147,25 +147,27 @@ label {
 //   }
 // }
 // fetchApiKey()
+
 async function fetchApiKey() {
   try {
     const response = await fetch('/api/get-api-key');
     const data = await response.json();
     console.log("The key is:", data.apiKey);
 
-    // Set the global variable only after fetching the data
-   return data.apiKey;
+    // Store the API key in localStorage instead of window global
+    localStorage.setItem('MY_GLOBAL_VAR', data.apiKey);
   } catch (error) {
     console.error('Error fetching API key:', error);
   }
 }
 
-// Call the function and wait for it to complete
-fetchApiKey().then((data) => {
-  // Now you can safely access the global variable
-  window.MY_GLOBAL_VAR = data;
-  console.log("The global variable is:", window.MY_GLOBAL_VAR);
-});
+// // Call the function to fetch the API key
+// fetchApiKey().then(() => {
+//   // After fetching the API key, you can access it
+//   const apiKey = localStorage.getItem('MY_GLOBAL_VAR');
+//   console.log("The API key is stored in localStorage:", apiKey);
+// });
+
 
 
 
