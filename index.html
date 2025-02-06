@@ -152,7 +152,7 @@ async function fetchApiKey() {
   try {
     const response = await fetch('/api/get-api-key');
     const data = await response.json();
-    console.log("The key is:", data.apiKey);
+    // console.log("The key is:", data.apiKey);
 
     // Store the API key in localStorage instead of window global
     localStorage.setItem('MY_GLOBAL_VAR', data.apiKey);
